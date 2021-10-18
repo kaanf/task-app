@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseUser
 
 class FirebaseRepository() : BaseRepository() {
 
-     val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+    private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val userMutableLiveData: MutableLiveData<FirebaseUser> = MutableLiveData()
 
     private fun getCurrentUser() = firebaseAuth.currentUser
