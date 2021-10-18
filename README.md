@@ -35,35 +35,53 @@ Task project’s firebase architecture consists of several components. These are
 ### Repositories
 
 **FirebaseRepository**: `Firebase Authentication functions.`
+
 **ProductRepository**: `Product updates and CRUD operations.`
 
 ### User Interface (UI)
 
 **BaseFragment & ViewModelFactory**: `Classes to fragment management.`
+
 **AddProductFragment**: `Fragment that product information is saved into the database.`
+
 **BottomSheetFragment**: `BottomSheetDialog fragment used for product updates.`
+
 **HomeActivity**: `Container activity that hosts product fragments.`
+
 **Login Fragment**: `Fragment that users can login with their Firebase account.`
-**MainActivity**: `Container activity that hosts login and register fragments..`
+
+**MainActivity**: `Container activity that hosts login and register fragments.`
+
 **ProductDetailsFragment**: `Fragment that you can update and delete products.`
+
 **ProductFragment**: `Fragment that data retrieved from Firebase Database is displayed in Recyclerview.`
+
 **RegisterFragment**: `Fragment that users are registered to the application with their e-mail and password via Firebase Authentication.`
+
 **SplashActivity**: `Fragment that Party Corgi greets you.`
 
 ### Utils
 
 **AuthenticationState**: `Enum class that declares the user's authentication state in the application.`
+
 **Extensions**: `Object class written to make Toast easier to use.`
+
 **Router**: `Class that hosts intent usage.`
+
 **UserLiveData**: `Authentication LiveData functions.`
+
 **Validation**: `Object class that controls inputs entered by the user.`
 
 ### ViewModels
 
 **AddProductViewModel**: `Connection between the ProductRepository and the AddProductFragment. `
+
 **LoginViewModel**: `ViewModel that determines the user's Authentication State. (Connection between FirebaseRepository and LoginFragment.)`
+
 **RegisterViewModel**: `Connection between the FirebaseRepository and the RegisterFragment`
+
 **ProductViewModel**: `Empty.`
+
 **ProductDetailsViewModel**: `Empty.`
 
 - Users can register and login to the app.
