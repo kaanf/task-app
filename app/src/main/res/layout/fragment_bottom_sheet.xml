@@ -130,7 +130,7 @@
             android:background="@drawable/main_button_bg"
             android:elevation="@dimen/small_margin"
             android:letterSpacing="-0.02"
-            android:text="@string/add_product_continue"
+            android:text="@string/common_google_play_services_update_button"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/edit_text_size" />
