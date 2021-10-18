@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/normal_padding"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="120dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/bottomSheet"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.BottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/name_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/product_name"
+            android:drawableStart="@drawable/ic_product"
+            android:drawablePadding="@dimen/normal_padding"
+            android:drawableTint="@color/form"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:letterSpacing="-0.02"
+            android:paddingStart="@dimen/big_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:textColor="@color/description"
+            android:textColorHint="@color/form"
+            android:textSize="@dimen/edit_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/price_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/add_product_price"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:letterSpacing="-0.02"
+            android:drawableStart="@drawable/ic_price"
+            android:drawablePadding="@dimen/normal_padding"
+            android:drawableTint="@color/form"
+            android:paddingStart="@dimen/big_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:textColor="@color/description"
+            android:textColorHint="@color/form"
+            android:textSize="@dimen/edit_text_size"
+            app:layout_constraintEnd_toEndOf="@id/name_update"
+            app:layout_constraintStart_toStartOf="@id/name_update"
+            app:layout_constraintTop_toBottomOf="@id/name_update" />
+
+        <EditText
+            android:id="@+id/category_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/add_product_category"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:letterSpacing="-0.02"
+            android:drawableStart="@drawable/ic_category"
+            android:drawablePadding="@dimen/normal_padding"
+            android:drawableTint="@color/form"
+            android:paddingStart="@dimen/big_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:textColor="@color/description"
+            android:textColorHint="@color/form"
+            android:textSize="@dimen/edit_text_size"
+            app:layout_constraintEnd_toEndOf="@id/price_update"
+            app:layout_constraintStart_toStartOf="@id/price_update"
+            app:layout_constraintTop_toBottomOf="@id/price_update" />
+
+        <EditText
+            android:id="@+id/description_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/edit_text_background"
+            android:drawableStart="@drawable/ic_description"
+            android:drawablePadding="@dimen/normal_padding"
+            android:drawableTint="@color/form"
+            android:hint="@string/add_product_description_et"
+            android:imeOptions="actionDone"
+            android:inputType="text|textMultiLine"
+            android:letterSpacing="-0.02"
+            android:paddingStart="@dimen/big_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:textColor="@color/description"
+            android:textColorHint="@color/form"
+            android:textSize="@dimen/edit_text_size"
+            app:layout_constraintEnd_toEndOf="@id/category_update"
+            app:layout_constraintStart_toStartOf="@id/category_update"
+            app:layout_constraintTop_toBottomOf="@id/category_update" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/main_button_bg"
+            android:elevation="@dimen/small_margin"
+            android:letterSpacing="-0.02"
+            android:text="@string/add_product_continue"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/edit_text_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

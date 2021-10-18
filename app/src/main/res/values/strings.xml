@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TaskApp</string>
+    <string name="login">Login</string>
+    <string name="login_description">Enter your e-mail address and password to login.</string>
+    <string name="e_mail_address">E-Mail Address</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="get_started_login">Get started.</string>
+    <string name="get_started_register">Get Started</string>
+    <string name="register_description">Let\'s create your account.</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="register">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_products">Search products</string>
+    <string name="add_product">Add Product</string>
+    <string name="add_product_description">Enter the product details.</string>
+    <string name="product_name">Name</string>
+    <string name="add_product_price">Price</string>
+    <string name="add_product_category">Category</string>
+    <string name="add_product_continue">Continue</string>
+    <string name="add_product_description_et">Description</string>
+    <string name="product_details">Product Details</string>
+    <string name="loading">Loading…</string>
+</resources>

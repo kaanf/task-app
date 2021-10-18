@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin -->
+    <dimen name="half_margin">2dp</dimen>
+    <dimen name="smallest_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="big_margin">32dp</dimen>
+    <!-- Padding -->
+    <dimen name="half_padding">2dp</dimen>
+    <dimen name="smallest_padding">4dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="big_padding">24dp</dimen>
+    <dimen name="biggest_padding">32dp</dimen>
+    <!-- Button -->
+    <dimen name="button_height">60dp</dimen>
+    <dimen name="big_button_height">100dp</dimen>
+    <!-- Font sizes -->
+    <dimen name="header_size">28sp</dimen>
+    <dimen name="description_size">16sp</dimen>
+    <dimen name="edit_text_size">16sp</dimen>
+    <dimen name="progress_bar_size">20sp</dimen>
+</resources>
