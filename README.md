@@ -8,7 +8,7 @@ Splash Screen              |  Login Screen                |  Register Screen
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](/images/splash_screen.png)  |  ![](/images/login_screen.png)  |  ![](/images/register_screen.png)
 
-Home Screen                |  Add Product Screen            |  Product_Details Screen
+Home Screen                |  Add Product Screen            |  Product Details Screen
 :-------------------------:|:------------------------------:|:-------------------------:
 ![](/images/home_screen.png)  |  ![](/images/add_product.png)  |  ![](/images/product_details.png)
 
