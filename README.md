@@ -23,7 +23,7 @@ Task project has many external frameworks and libraries such as Firebase (Real T
 Task project’s firebase architecture consists of several components. These are Firebase Authentication, Firebase Functions, Firebase Database, Firebase Storage.
 
 <center>
-    <img src="/img/schema_two.jpg" alt="drawing" width="300"/> 
+    <img src="/images/schema_two.jpg" alt="drawing" width="300"/> 
 </center>
 
 ## 🏗️ Structure
