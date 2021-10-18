@@ -4,12 +4,12 @@ A simple e-commerce application that implements MVVM architecture.
 
 
 ## User Interfaces
-Splash Screen           |  Login Screen            |  Register Screen
+Splash Screen              |  Login Screen                |  Register Screen
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](/images/splash_screen.png)  |  ![](/images/login_screen.png)  |  ![](/images/register_screen.png)
 
-Home Screen           |  Add Product Screen            |  Product_Details Screen
-:-------------------------:|:-------------------------:|:-------------------------:
+Home Screen                |  Add Product Screen            |  Product_Details Screen
+:-------------------------:|:------------------------------:|:-------------------------:
 ![](/images/home_screen.png)  |  ![](/images/add_product.png)  |  ![](/images/product_details.png)
 
 ## Software Architecture
