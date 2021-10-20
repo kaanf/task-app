@@ -165,11 +165,11 @@ I called `removeValue()` to delete product.
 
 ### ViewModels
 
-**AddProductViewModel**: `Connection between the ProductRepository and the AddProductFragment. `
+**AddProductViewModel**: `Connection between ProductRepository and AddProductFragment. `
 
 **LoginViewModel**: `ViewModel that determines the user's Authentication State. (Connection between FirebaseRepository and LoginFragment.)`
 
-**RegisterViewModel**: `Connection between the FirebaseRepository and the RegisterFragment`
+**RegisterViewModel**: `Connection between FirebaseRepository and RegisterFragment`
 
 **ProductViewModel**: `Empty.`
 
