@@ -100,7 +100,7 @@
             android:drawableTint="@color/form"
             android:hint="@string/add_product_description_et"
             android:imeOptions="actionDone"
-            android:inputType="text|textMultiLine"
+            android:inputType="text"
             android:letterSpacing="-0.02"
             android:paddingStart="@dimen/big_padding"
             android:paddingEnd="@dimen/big_padding"

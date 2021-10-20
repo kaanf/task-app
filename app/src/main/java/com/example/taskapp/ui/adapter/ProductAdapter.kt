@@ -35,12 +35,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
         notifyDataSetChanged()
     }
 
-    fun onPostSorting(products: List<Product>) {
-        products.sortedBy {
-            it.name
-        }
-        notifyDataSetChanged()
-    }
 
     fun onPostItemClick(): LiveData<Product> = onItemClickLiveData
 

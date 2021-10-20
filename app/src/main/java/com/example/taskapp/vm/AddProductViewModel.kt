@@ -1,6 +1,7 @@
 package com.example.taskapp.vm
 
 import androidx.lifecycle.ViewModel
+import com.example.taskapp.model.Product
 import com.example.taskapp.repository.ProductRepository
 
 class AddProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
@@ -13,14 +14,7 @@ class AddProductViewModel(private val productRepository: ProductRepository) : Vi
         onSuccessAction: () -> Unit,
         onFailureAction: () -> Unit
     ) {
-        productRepository.addProduct(
-            name,
-            description,
-            price,
-            category,
-            image,
-            onSuccessAction,
-            onFailureAction
-        )
+        val product = Product("", name, description, price, category, image, "")
+        productRepository.addProduct(product, onSuccessAction, onFailureAction)
     }
 }

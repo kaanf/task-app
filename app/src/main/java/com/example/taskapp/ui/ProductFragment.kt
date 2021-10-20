@@ -29,7 +29,7 @@ class ProductFragment: BaseFragment<ProductViewModel, FragmentProductBinding, Pr
             binding.homeProgressBar.visibility = View.GONE
             binding.homeProgressText.visibility = View.GONE
             binding.productsFeed.visibility = View.VISIBLE
-        }, 3000)
+        }, 2000)
         initialize()
         binding.addProduct.setOnClickListener {
             findNavController().navigate(R.id.action_productFragment_to_addProductFragment)

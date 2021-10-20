@@ -4,10 +4,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.taskapp.model.Product
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,67 +17,42 @@ class ProductRepository : BaseRepository() {
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
     private val firebaseDatabase = FirebaseDatabase.getInstance()
+    private val firebaseStorage = FirebaseStorage.getInstance()
+    private val databaseReference = firebaseDatabase.getReference(PRODUCT_REFERENCE)
+    private lateinit var productsValueEventListener: ValueEventListener
+    private val productValues = MutableLiveData<List<Product>>()
 
-    private fun createProduct(
-        key: String,
-        name: String,
-        description: String,
-        price: String,
-        category: String,
-        image: String
-    ): Product {
-        val timestamp = getCurrentTime()
-        return Product(key, name, description, price, category, image, timestamp)
-    }
-
-    fun addProduct(
-        name: String,
-        description: String,
-        price: String,
-        category: String,
-        image: String,
-        onSuccessAction: () -> Unit,
-        onFailureAction: () -> Unit
-    ) {
+    fun addProduct(product: Product, onSuccessAction: () -> Unit, onFailureAction: () -> Unit) {
         val productReference = firebaseDatabase.getReference(PRODUCT_REFERENCE)
-        val key = productReference.push().key ?: ""
-        val post = createProduct(key, name, description, price, category, image)
-        val fileName = imageNameFormatter()
-        val storageReference = FirebaseStorage.getInstance().reference.child("images/$fileName")
-        storageReference.putFile(post.image.toUri())
+        product.key = productReference.push().key ?: ""
+        product.timestamp = getCurrentTime()
+        val storageReference = firebaseStorage.reference.child("images/${imageNameFormatter()}")
+        storageReference.putFile(product.image.toUri())
             .addOnSuccessListener {
                 it.storage.downloadUrl.addOnCompleteListener { url ->
                     val imgLink = url.result.toString()
-                    post.image = imgLink
-                    productReference.child(key)
-                        .setValue(post)
+                    product.image = imgLink
+                    productReference.child(product.key)
+                        .setValue(product)
                         .addOnSuccessListener { onSuccessAction() }
                         .addOnFailureListener { onFailureAction() }
                 }
             }
     }
 
-    private lateinit var productsValueEventListener: ValueEventListener
-    private val productValues = MutableLiveData<List<Product>>()
-
     private fun listenForProductsValueChanges() {
         productsValueEventListener = object : ValueEventListener {
-            override fun onCancelled(databaseError: DatabaseError) {
-            }
-
+            override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    val posts = dataSnapshot.children.mapNotNull {
+                    val products = dataSnapshot.children.mapNotNull {
                         it.getValue(Product::class.java)
                     }.toList()
-                    productValues.postValue(posts)
-                } else {
-                    productValues.postValue(emptyList())
-                }
+                    productValues.postValue(products)
+                } else productValues.postValue(emptyList())
             }
         }
-        firebaseDatabase.getReference(PRODUCT_REFERENCE)
-            .addValueEventListener(productsValueEventListener)
+        databaseReference.addValueEventListener(productsValueEventListener)
     }
 
     fun onProductsValuesChange(): LiveData<List<Product>> {
@@ -89,8 +61,7 @@ class ProductRepository : BaseRepository() {
     }
 
     fun removeProductsValuesChangesListener() {
-        firebaseDatabase.getReference(PRODUCT_REFERENCE)
-            .removeEventListener(productsValueEventListener)
+        databaseReference.removeEventListener(productsValueEventListener)
     }
 
     private fun imageNameFormatter(): String {
@@ -100,15 +71,11 @@ class ProductRepository : BaseRepository() {
     }
 
     fun updateProduct(key: String, product: Product) {
-        firebaseDatabase.getReference(PRODUCT_REFERENCE)
-            .child(key)
-            .setValue(product)
+        databaseReference.child(key).setValue(product)
     }
 
     fun deleteProduct(key: String) {
-        firebaseDatabase.getReference(PRODUCT_REFERENCE)
-            .child(key)
-            .removeValue()
+        databaseReference.child(key).removeValue()
     }
 
 }

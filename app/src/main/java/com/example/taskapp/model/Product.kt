@@ -5,13 +5,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Product(
-    val key: String = "",
+    var key: String = "",
     var name: String = "",
     var description: String = "",
     var price: String = "",
     var category: String = "",
     var image: String = "",
-    val timestamp: String = ""
+    var timestamp: String = ""
 ) : Parcelable {
     fun toMap(): Map<String, Any?> {
         return mapOf(

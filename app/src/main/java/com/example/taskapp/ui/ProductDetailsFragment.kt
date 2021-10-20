@@ -97,6 +97,8 @@ class ProductDetailsFragment :
                     product.price = priceUpdate.text.toString()
                     productRepository.updateProduct(product.key, product)
                 }
+
+                findNavController().navigate(R.id.action_productDetailsFragment_to_productFragment)
             } else {
                 dialog?.hide()
             }
