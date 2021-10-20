@@ -26,6 +26,97 @@ Task project’s firebase architecture consists of several components. These are
     <img src="/images/schema_two.jpg" alt="drawing" width="300"/> 
 </center>
 
+## Code Review
+
+### ProductRepository.kt
+
+```kotlin title="ProductRepository.kt"
+private const val PRODUCT_REFERENCE = "products"
+private val firebaseDatabase = FirebaseDatabase.getInstance()  
+private val firebaseStorage = FirebaseStorage.getInstance()  
+private val databaseReference = firebaseDatabase.getReference(PRODUCT_REFERENCE)
+```
+The **firebaseDatabase** and **firebaseStorage** objects are the main entry point to database.  Also, I used `PRODUCT_REFERENCE` constant in retrieving reference from the database.
+
+```kotlin
+fun addProduct(product: Product, onSuccessAction: () -> Unit, onFailureAction: () -> Unit) {  
+    val productReference = firebaseDatabase.getReference(PRODUCT_REFERENCE)  
+    product.key = productReference.push().key ?: ""  
+    product.timestamp = getCurrentTime()  
+    val storageReference = firebaseStorage.reference.child("images/${imageNameFormatter()}")  
+    storageReference.putFile(product.image.toUri())  
+        .addOnSuccessListener {
+	        it.storage.downloadUrl.addOnCompleteListener { url ->  
+		        val imgLink = url.result.toString()  
+		        product.image = imgLink  
+		        productReference.child(product.key)  
+                    .setValue(product)  
+                    .addOnSuccessListener { onSuccessAction() }  
+                    .addOnFailureListener { onFailureAction() }  
+          }
+        }
+}
+```
+Products will be added as a child of the `PRODUCT_REFERENCE` node. I used `push()` to create an empty node with an **auto-generated key.** Next, I created a Product instance in `AddProductViewModel.kt` that I’ll save to the database and I stored the key of that product so I can refer to it later. Finally, I used `setValue()` to save the product.
+
+```kotlin
+private val productValues = MutableLiveData<List<Product>>()
+```
+I used _LiveData_ to notify the observers about product changes.
+
+```kotlin
+private lateinit var productsValueEventListener: ValueEventListener  
+```
+This is where I stored my event listener.
+
+```kotlin
+private fun listenForProductsValueChanges() {  
+    productsValueEventListener = object : ValueEventListener {  
+        override fun onCancelled(databaseError: DatabaseError) {}  
+        override fun onDataChange(dataSnapshot: DataSnapshot) {  
+            if (dataSnapshot.exists()) {  
+                val products = dataSnapshot.children.mapNotNull {
+	                it.getValue(Product::class.java)  
+                }.toList()  
+                productValues.postValue(products)  
+            } else productValues.postValue(emptyList())  
+        }  
+    }  
+    databaseReference.addValueEventListener(productsValueEventListener)  
+}
+```
+I added _ValueListener_ as an anonymous inner class and I assigned it to `productsValueEventListener` field. `onDataChange(dataSnapshot: DataSnapshot)` gets triggered whenever data under the reference I attached the listener to gets changed; either new data is added or existing data is updated or deleted. Next, by calling `exists()` on the _DataSnapshot_ object I checked if the snapshot contains a **non-null value.** If there is data in the snapshot I get all of the direct children of the snapshot and I map each one to the **Product** object by calling `getValue(Product::class.java)` on a child. If data doesn’t exist I set an empty list as the new value of *LiveData*.
+
+```kotlin
+fun onProductsValuesChange(): LiveData<List<Product>> {  
+    listenForProductsValueChanges()  
+    return productValues  
+}
+```
+This method just calls the function that attaches the listener and returns *LiveData*.
+
+```kotlin
+fun removeProductsValuesChangesListener() {  
+    databaseReference.removeEventListener(productsValueEventListener)  
+}
+```
+I want to listen for product updates when user on the home screen only. So, this method removes the passed in event listener, by calling `removeEventListener()`.
+
+```kotlin
+fun updateProduct(key: String, product: Product) {  
+    databaseReference.child(key).setValue(product)  
+}
+``` 
+Here I use the key to access the location of the product I want to update. I called `setValue()` with new product to update the content of the product.
+
+```kotlin
+fun deleteProduct(key: String) {  
+    databaseReference.child(key).removeValue()  
+}
+```
+
+I called `removeValue()` to delete product.
+
 ## 🏗️ Structure
 
 ### Model
@@ -88,7 +179,6 @@ Task project’s firebase architecture consists of several components. These are
 - Users can view the products saved in the database.
 - Users can save their favorite e-commerce products with product images to the database.
 - Users can update and delete the products they want.
-
 
 ## 🖊️ Note
 
