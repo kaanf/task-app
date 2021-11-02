@@ -1,4 +1,4 @@
-# 🦄 Mobiroller Task Project
+# 🦄 Firebase E-Commerce Project
 
 A simple e-commerce application that implements MVVM architecture.
 
@@ -180,8 +180,3 @@ I called `removeValue()` to delete product.
 - Users can save their favorite e-commerce products with product images to the database.
 - Users can update and delete the products they want.
 
-## 🖊️ Note
-
-When I tried to sort datas using Realtime Database Queries, I got an error and I tried to solve that error for a long time. However, I uploaded it to the Github repository without sorting, unfortunately, in order not to overdue the assignment.
-As a result of this project, I learned a lot of things. I may have mistakes in code design, I tried to do my best.
-_Thank you for your understanding._
